@@ -1,6 +1,8 @@
 import http from 'k6/http'
 import {sleep, check} from 'k6'
+import { pegarBaseURL } from '../utils/variaveis.js'
 const postLogin = JSON.parse(open("../fixtures/postLogin.json"))
+
 
 //set K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=html-report.html k6 run script.js
 export const options = {
@@ -22,7 +24,7 @@ export const options = {
 }
 
 export default function () {
-    const url = 'http://localhost:3000/login'
+    const url = pegarBaseURL() + '/login'
     const payload = JSON.stringify(postLogin)
 
     const params = {
